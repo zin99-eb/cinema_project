@@ -18,26 +18,29 @@ public class FilmServiceImp implements FilmService{
 
     @Override
     public Film updateFilm(Film film) {
-        return null;
+        return filmRepository.save(film);
     }
 
     @Override
     public void deleteFilmById(Long id) {
+        filmRepository.deleteById(id);
 
     }
 
     @Override
     public void deleteAllFilms() {
+        filmRepository.deleteAll();
 
     }
 
     @Override
     public Film getFilmById(Long id) {
-        return null;
+
+        return filmRepository.findById(id).get();
     }
 
     @Override
-    public List<Cinema> getAllFilms() {
-        return null;
+    public List<Film> getAllFilms() {
+        return filmRepository.findAll();
     }
 }

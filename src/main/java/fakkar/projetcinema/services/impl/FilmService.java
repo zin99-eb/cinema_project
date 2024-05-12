@@ -13,5 +13,5 @@ public interface FilmService {
     void deleteFilmById(Long id);
     void deleteAllFilms();
     Film getFilmById(Long id);
-    List<Cinema> getAllFilms();
+    List<Film> getAllFilms();
 }

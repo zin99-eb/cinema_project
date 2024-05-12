@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Film Creation - THYMELEAF</title>
+    <title>Films List - THYMELEAF</title>
 </head>
 <body>
 <header>
@@ -29,7 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarExample01">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="filmsList">Films List</a>
+                        <a class="nav-link" th:href="@{createFilm}">Create Film</a>
                     </li>
                 </ul>
             </div>
@@ -39,43 +39,50 @@
 
     <!-- Jumbotron -->
     <div class="p-1 text-center bg-light">
-        <h1 class="mb-3">Film Creation - THYMELEAF</h1>
+        <h1 class="mb-3">Films List - THYMELEAF</h1>
     </div>
     <!-- Jumbotron -->
 </header>
-<main>
-    <form th:action="@{saveFilm}" method="post">
+<main class="container mt-5">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">titre</th>
+            <th scope="col">description</th>
+            <th scope="col">realisateur</th>
+            <th scope="col">dateSortie</th>
+            <th scope="col">duree</th>
 
-        <div class="form-group">
-            <label class="form-label" for="titre">titre : </label>
-            <input class="form-control" type="text" id="titre" name="titre">
-        </div>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="film:${filmsVue}">
+        <td th:text="${film.id}"></td>
+        <td th:text="${film.titre}"></td>
+        <td th:text="${film.description}"></td>
+        <td th:text="${film.realisateur}"></td>
+        <td th:text="${#dates.format(film.dateSortie,'dd-MM-yyyy')}"></td>
+        <td th:text="${film.duree}"></td>
 
-        <div class="form-group">
-            <label class="form-label" for="description">Description : </label>
-            <input class="form-control" type="text" id="description" name="description">
-        </div>
+        <td>
+            <a
+                    onclick="return confirm('Are you sure to delete this film ? ')"
+                    th:href="@{deleteFilm(id=${film.id})}">
+                Delete
+            </a>
+        </td>
+            <td>
+            <a th:href="@{editFilm(id=${film.id})}">
+                Edit
+            </a>
 
-        <div class="form-group">
-            <label class="form-label" for="realisateur">Realisateur : </label>
-            <input class="form-control" type="text" id="realisateur" name="realisateur">
-        </div>
-        <div>
-            <label class="form-label"  for="dateSortie">dateSortie </label>
-            <input class="form-control" type="date" id="dateSortie" name="dateSortie">
-        </div>
+        </td>
+        </tr>
+        </tbody>
+    </table>
 
-        <div>
-            <label class="form-label"  for="duree">duree </label>
-            <input class="form-control" type="text" id="duree" name="duree">
-        </div>
-
-        <div class="form-group">
-            <input class="form-control btn btn-primary" type="submit" value="Save">
-        </div>
-    </form>
 </main>
-
 
 <footer class="text-center text-lg-start bg-light text-muted">
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
