@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,5 +22,5 @@ public class Ville {
     private String name;
     private double longitude, latitude, altitude;
     @OneToMany(mappedBy = "ville")
-    private Collection<Cinema> cinemas;
+    private List<Cinema> cinemas=new ArrayList<>();
 }

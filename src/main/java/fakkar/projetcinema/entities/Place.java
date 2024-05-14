@@ -1,6 +1,5 @@
 package fakkar.projetcinema.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,7 +24,6 @@ public class Place {
     private double longitude, latitude, altitude;
     @ManyToOne
     private Salle salle;
-    @OneToMany(mappedBy = "place")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Collection<Ticket> tickets;
+/*    @OneToMany(mappedBy = "place")
+    private List<Ticket> tickets =new ArrayList<>();*/
 }

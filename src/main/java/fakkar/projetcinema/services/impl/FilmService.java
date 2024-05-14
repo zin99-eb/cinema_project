@@ -1,8 +1,5 @@
 package fakkar.projetcinema.services.impl;
-
-import fakkar.projetcinema.entities.Cinema;
 import fakkar.projetcinema.entities.Film;
-import fakkar.projetcinema.entities.Seance;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

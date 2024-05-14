@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template.html">
+
 <head>
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Film Edit</title>
+    <title>Film Edition - THYMELEAF</title>
 </head>
 <body>
 <header>
@@ -26,7 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarExample01">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="customersList">Customers List</a>
+                        <a class="nav-link" href="filmsList">Films List</a>
                     </li>
                 </ul>
             </div>
@@ -36,14 +39,82 @@
 
     <!-- Jumbotron -->
     <div class="p-1 text-center bg-light">
-        <h1 class="mb-3">Customer Edit - JSP</h1>
+        <h1 class="mb-3">Film Edition - THYMELEAF</h1>
     </div>
     <!-- Jumbotron -->
 </header>
-<main class="container mt-5">
+<main>
+    <div class="container base">
+        <div class="row mb-3">
+    <form th:action="@{updateFilm}" method="post">
+
+        <div class="row mb-3">
+            <div class="col-sm-8">
+            <label class="col-sm-4 col-form-label" for="id">Id : </label>
+            <input class="form-control" type="text" id="id" name="id" th:value="${filmView.id}"/>
+        </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-8">
+            <label class="col-sm-4 col-form-label" for="titre">titre : </label>
+            <input class="form-control" type="text" id="titre" name="titre" th:value="${filmView.titre}"/>
+        </div>
+        </div>
+
+            <div class="row mb-3">
+                <div class="col-sm-8">
+            <label class="col-sm-4 col-form-label" for="description">Description : </label>
+            <input class="form-control" type="text" id="description" name="description" th:value="${filmView.description}"/>
+        </div>
+            </div>
+
+                <div class="row mb-3">
+                    <div class="col-sm-8">
+            <label class="col-sm-4 col-form-label" for="realisateur">Realisateur : </label>
+            <input class="form-control" type="text" id="realisateur" name="realisateur" th:value="${filmView.realisateur}"/>
+        </div>
+                </div>
 
 
+        <div class="row mb-3">
+            <div class="col-sm-8">
+            <label class="col-sm-4 col-form-label" for="dateSortie">dateSortie </label>
+            <input class="form-control" type="date" id="dateSortie" name="dateSortie" th:value="${filmView.dateSortie}"/>
+        </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-8">
+            <label class="col-sm-4 col-form-label"  for="duree">duree </label>
+            <input class="form-control" type="time" id="duree" name="duree" th:value="${filmView.duree}"/>
+        </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="offset-sm-4 col-sm-8">
+            <img th:src="@{'/images/' + ${filmView.photo}}"
+                 alt="..." width="100">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-8">
+                <label class="col-sm-4 col-form-label"  for="photo">Photo Film : </label>
+                <input class="form-control" type="file" id="photo" name="photo" th:value="${filmView.photo}"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="offset-sm-4 col-sm-4 d-grid">
+                <input class="form-control btn btn-primary" type="submit" value="Update">
+            </div>
+        </div>
+    </form>
+        </div>
+    </div>
 </main>
+
 
 <footer class="text-center text-lg-start bg-light text-muted">
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">

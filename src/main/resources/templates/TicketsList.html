@@ -29,7 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarExample01">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" th:href="@{createFilm}">Create Film</a>
+                        <a class="nav-link" th:href="@{reserveTicket}">Reserve Ticket</a>
                     </li>
                 </ul>
             </div>
@@ -39,7 +39,7 @@
 
     <!-- Jumbotron -->
     <div class="p-1 text-center bg-light">
-        <h1 class="mb-3">Films List </h1>
+        <h1 class="mb-3">Tickets List </h1>
     </div>
     <!-- Jumbotron -->
 </header>
@@ -48,38 +48,33 @@
         <thead>
         <tr>
             <th scope="col">Id</th>
-            <th scope="col">titre</th>
-            <th scope="col">description</th>
-            <th scope="col">realisateur</th>
-            <th scope="col">dateSortie</th>
-            <th scope="col">duree</th>
-            <th scope="col">image</th>
+            <th scope="col">nomClient</th>
+            <th scope="col">codePayement</th>
+            <th scope="col">prix</th>
+            <th scope="col">reservee</th>
+
 
         </tr>
         </thead>
         <tbody>
-        <tr th:each="film:${filmsVue}">
+        <tr th:each="film:${ticketVue}">
             <td th:text="${film.id}"></td>
-            <td th:text="${film.titre}"></td>
-            <td th:text="${film.description}"></td>
-            <td th:text="${film.realisateur}"></td>
-            <td th:text="${#dates.format(film.dateSortie,'dd-MM-yyyy')}"></td>
-            <td th:text="${film.duree}"></td>
-            <td>
-                <img th:src="@{'/images/' + ${film.photo}}"
-                     alt="..." width="100">
-            </td>
+            <td th:text="${film.nomClient}"></td>
+            <td th:text="${film.codePayement}"></td>
+            <td th:text="${film.prix}"></td>
+            <td th:text="${film.reservee}"></td>
+
 
             <td>
                 <a class="btn btn-primary btn-danger"
                    onclick="return confirm('Are you sure to delete this film ? ')"
-                   th:href="@{deleteFilm(id=${film.id})}">
+                   th:href="@{deleteTicket(id=${film.id})}">
                     Delete
                 </a>
             </td>
             <td>
                 <a class="btn btn-primary btn-success"
-                   th:href="@{editFilm(id=${film.id})}">
+                   th:href="@{editTicket(id=${film.id})}">
                     Edit
                 </a>
 

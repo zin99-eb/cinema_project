@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Seance {
+public class   Seance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

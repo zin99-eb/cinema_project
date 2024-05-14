@@ -1,6 +1,5 @@
 package fakkar.projetcinema.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +8,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -24,14 +26,15 @@ public class Film {
     private String titre;
     private String description;
     private String realisateur;
+    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateSortie;
-    private double duree;
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern = "HH:mm:ss")
+    private LocalTime duree;
     private String photo;
     @OneToMany(mappedBy = "film")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Collection<Projection> projections;
-
+    private List<Projection> projections=new ArrayList<>();
     public void setCategorie(Categorie categorie,String photoname) {
         this.categorie = categorie;
         this.photo=photoname;
